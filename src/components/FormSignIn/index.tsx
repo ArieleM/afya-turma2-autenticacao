@@ -1,11 +1,14 @@
 // import { Container } from './styles';
 import { FormEvent, useCallback , useState} from "react";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
-import api from '../../service/api'
+import api from '../../service/api';
+
+import animationSignIn from '../../assets/animation/60347-loader.json'
 
 interface IUserLogin{
-  login:string;
+  usuario:string;
   senha:string;
 }
 
@@ -23,12 +26,12 @@ const FormSignIn: React.FC = () => {
       e.preventDefault()
       setIsLoad(true);
 
-      api.post('/usuarios',
-        formDataContent
-      ).then(
+      api.post('/login', formDataContent)
+      .then(
         response => {
+          localStorage.setItem('@tokenAfyaApp', response.data.token)
           toast.success('Cadastro realizado com sucesso', {
-            onClose: () => history.push('/login')
+            onClose: () => history.push('/dash')
           })
         })
       .catch(e => toast.error('Algo deu errado'))
@@ -37,15 +40,27 @@ const FormSignIn: React.FC = () => {
     [formDataContent, history],
   )
 
+  const animationContent = {
+    loop: true,
+    autoplay: true,
+    animationData: animationSignIn
+  }
+
   return (
     <div>
-      { isLoad ? (<p>Carregando</p>) : (
+      { isLoad ? (
+        <Lottie 
+          options={animationContent}
+          width={200}
+          height={400}
+        />
+      ) : (
       <form onSubmit={handleSubmit}>
         <input 
           type="text"
           name="name"
           placeholder="Insira seu nome de usuário"
-          onChange={ e => setFormDataContent({...formDataContent, login:e.target.value})}
+          onChange={ e => setFormDataContent({...formDataContent, usuario:e.target.value})}
         />
         <input
           type="password"
