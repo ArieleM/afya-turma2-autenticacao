@@ -1,12 +1,19 @@
-import React from 'react';
+import Footer from '../../../components/Footer';
+import NavBar from '../../../components/NavBar';
 
-import { Container } from './styles';
+import { SectionComponent } from './styles';
 
 const Login: React.FC = () => {
   return (
-    <Container>
-      <h1>Login</h1>
-    </Container>
+    <>
+      <NavBar />
+      <div className="container">
+        <SectionComponent>
+          <h1>Login</h1>
+        </SectionComponent>
+      </div>
+      <Footer />
+    </>
   );
 }
 
