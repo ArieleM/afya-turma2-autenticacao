@@ -19,6 +19,7 @@ img{
     border-radius: 12px;
     color: #F71755;
     text-transform: uppercase;
+    font-weight: bold;
 
     transition:.3s;
     &:hover{
