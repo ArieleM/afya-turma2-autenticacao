@@ -1,5 +1,8 @@
 import React from 'react';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
+
+import PrivateRoutes from './private.routes';
+import Dash from './views/pages/Dash';
 import Home from './views/pages/Home';
 import Login from './views/pages/Login';
 import SignUp from './views/pages/SignUp';
@@ -11,6 +14,7 @@ const Routes: React.FC = () => {
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} />
         <Route path="/criar-conta" component={SignUp} />
+        <PrivateRoutes path="/dash" exact component={Dash} />
       </Switch>
     </BrowserRouter>
   );
