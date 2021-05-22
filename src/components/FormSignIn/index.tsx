@@ -4,18 +4,16 @@ import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import api from '../../service/api'
 
-interface IUserRegistrer{
-  cpf:string;
-  nome:string;
+interface IUserLogin{
   login:string;
   senha:string;
 }
 
 
-const FormSignUp: React.FC = () => {
+const FormSignIn: React.FC = () => {
   const history = useHistory();
 
-  const [formDataContent, setFormDataContent] = useState<IUserRegistrer> ({} as IUserRegistrer)
+  const [formDataContent, setFormDataContent] = useState<IUserLogin> ({} as IUserLogin)
   const [isLoad, setIsLoad] = useState<boolean> (false);
 
 
@@ -46,20 +44,8 @@ const FormSignUp: React.FC = () => {
         <input 
           type="text"
           name="name"
-          placeholder="Insira seu nome"
-          onChange={ e => setFormDataContent({...formDataContent, nome:e.target.value})}
-        />
-        <input 
-          type="text"
-          name="username"
           placeholder="Insira seu nome de usuário"
           onChange={ e => setFormDataContent({...formDataContent, login:e.target.value})}
-        />
-        <input 
-          type="text"
-          name="cpf"
-          placeholder="Insira seu cpf"
-          onChange={ e => setFormDataContent({...formDataContent, cpf:e.target.value})}
         />
         <input
           type="password"
@@ -67,11 +53,11 @@ const FormSignUp: React.FC = () => {
           placeholder="Insira sua senha"
           onChange={ e => setFormDataContent({...formDataContent, senha:e.target.value})}
         />
-        <input type="submit" value="Criar conta"  />
+        <input type="submit" value="Logar"  />
       </form>
       )}
     </div>
   );
 }
 
-export default FormSignUp;
+export default FormSignIn;
